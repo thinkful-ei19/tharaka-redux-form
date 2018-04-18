@@ -28,6 +28,7 @@ input, textarea, button {
     background-color: #d9534f;
     color: white;
 }
+
 .form-error {
     margin: 0 6px;
     padding: 6px;

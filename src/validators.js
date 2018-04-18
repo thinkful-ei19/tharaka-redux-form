@@ -11,8 +11,9 @@ export const nonEmpty = value =>
 // export const email = value =>
 //     /^\S+@\S+$/.test(value) ? undefined : 'Must be a valid email address';
 
-export const exactlFive = value =>
+export const exactlyFive = value =>
     value.trim().length === 5 ? undefined : 'The Tracking Number Must Be 5 Characters Long';
 
 export const isNumber = value =>
-    Number.isInteger(value.trim()) ? undefined : 'Only Numbers Allowed';//not working
+    // Number.isInteger(parseInt(value.trim())) ? undefined : 'Only Numbers Allowed' //Fix this(Doesnt work if it starts with a number)
+    value.match(/^-{0,1}\d+$/) ? undefined : 'Only Numbers Allowed'
