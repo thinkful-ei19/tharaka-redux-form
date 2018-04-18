@@ -169,6 +169,9 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import Input from './input';
+import {required, nonEmpty, exactlFive, isNumber} from '../validators';
+
+
 export class ContactForm extends React.Component {
     onSubmit(values) {
         console.log(values);
@@ -181,9 +184,20 @@ export class ContactForm extends React.Component {
                     this.onSubmit(values)
                 )}>
                 <div className="form-input">
-                <label htmlFor="name">Tracking number</label>
-                <Field name="name" id="name" type="text" component="input" />
+
+                    <Field
+                        name="name"
+                        type="text"
+                        component={Input}
+                        label="Tracking Number"
+                        validate={[required, nonEmpty, exactlFive, isNumber]}
+                    />
+                {/* <label htmlFor="name">Tracking number</label>
+                <Field name="name" id="name" type="text" component="input" 
+                validate={[required, nonEmpty, exactlFive, isNumber]}
+                /> */}
                 </div>
+
                 <div className="form-input">
                 <label htmlFor="issue">What is your issue?</label>
                 <Field name="issue" id="issue" component="select">
@@ -193,10 +207,30 @@ export class ContactForm extends React.Component {
                     <option value="four">Some of my order arrived damaged</option>
                     <option value="five">Other (give details below)</option>
                 </Field>
+
+                    {/* <Field
+                        name="issue"
+                        component={Input}
+                        label="What is your issue?"
+                    >
+                        <option value="one">My delivery hasn't arrived</option>
+                        <option value="two">The wrong item was delivered</option>
+                        <option value="three">Part of my order was missing</option>
+                        <option value="four">Some of my order arrived damaged</option>
+                        <option value="five">Other (give details below)</option>
+                    </Field> */}
                 </div>
+                
                 <div className="form-input">
-                <label htmlFor="message">Give more details (optional)</label>
-                <Field name="message" id="message" component="textarea" />
+                    <Field
+                        name="message"
+                        component={Input}
+                        label="Give more details"
+                        validate={[required, nonEmpty]}
+                    />
+
+                {/* <label htmlFor="message">Give more details (optional)</label>
+                <Field name="message" id="message" component="textarea" /> */}
                 </div>
                 <button type="submit">submit</button>
             </form>

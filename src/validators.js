@@ -12,4 +12,7 @@ export const nonEmpty = value =>
 //     /^\S+@\S+$/.test(value) ? undefined : 'Must be a valid email address';
 
 export const exactlFive = value =>
-    value.trim().length === 5 ? undefined : 'The Tracking Number Must Be 5 Characters Long'  
+    value.trim().length === 5 ? undefined : 'The Tracking Number Must Be 5 Characters Long';
+
+export const isNumber = value =>
+    Number.isInteger(value.trim()) ? undefined : 'Only Numbers Allowed';//not working
