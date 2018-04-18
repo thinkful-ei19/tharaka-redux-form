@@ -4,7 +4,9 @@ import Input from './input';
 import {required, nonEmpty, exactlyFive, isNumber} from '../validators';
 export class ContactForm extends React.Component {
     onSubmit(values) {
-        console.log(values);
+        if(!values.issue) {
+            values.issue = 'not-delivered';
+        }
         return fetch('https://us-central1-delivery-form-api.cloudfunctions.net/api/report', {
             method: 'POST',
             body: JSON.stringify(values),
@@ -13,7 +15,6 @@ export class ContactForm extends React.Component {
             }
         })
             .then(res => {
-                console.log(res);
                 if (!res.ok) {
                     if (
                         res.headers.has('content-type') &&
@@ -84,24 +85,13 @@ export class ContactForm extends React.Component {
                 </div>
                 <div className="form-input">
 
-                    <Field name="issue" id="issue" component={Input} element="select" label="What is your issue?" select="not-delivered" >
+                    <Field name="issue" id="issue" component={Input} element="select" label="What is your issue?" value="wrong-item" >
                         <option value="not-delivered">My delivery hasn't arrived</option>
                         <option value="wrong-item">The wrong item was delivered</option>
                         <option value="missing-part">Part of my order was missing</option>
                         <option value="damaged">Some of my order arrived damaged</option>
                         <option value="other">Other (give details below)</option>
                     </Field>
-                    {/* <Field
-                        name="issue"
-                        component={Input2}
-                        label="What is your issue?"
-                    >
-                        <option value="one">My delivery hasn't arrived</option>
-                        <option value="two">The wrong item was delivered</option>
-                        <option value="three">Part of my order was missing</option>
-                        <option value="four">Some of my order arrived damaged</option>
-                        <option value="five">Other (give details below)</option>
-                    </Field> */}
                 </div>
                 
                 <div className="form-input">
