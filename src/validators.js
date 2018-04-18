@@ -8,5 +8,8 @@ export const nonEmpty = value =>
 // @ A literal at sign
 // \S+ Matches one or more non-whitespace characters after the @
 // $ Matches the end of the text
-export const email = value =>
-    /^\S+@\S+$/.test(value) ? undefined : 'Must be a valid email address';
+// export const email = value =>
+//     /^\S+@\S+$/.test(value) ? undefined : 'Must be a valid email address';
+
+export const exactlFive = value =>
+    value.trim().length === 5 ? undefined : 'The Tracking Number Must Be 5 Characters Long'  
